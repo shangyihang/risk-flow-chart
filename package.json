@@ -1,0 +1,68 @@
+{
+  "name": "risk-flow-chart",
+  "version": "1.0.1",
+  "description": "用于制作针对于风控模型的流程图插件",
+  "private": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.js",
+      "default": "./dist/index.es.js"
+    }
+  },
+  "scripts": {
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\"",
+    "build:types": "tsc --emitDeclarationOnly -p tsconfig.json",
+    "build:lib": "vite build",
+    "build": "npm run clean && npm run build:types && npm run build:lib",
+    "lint": "eslint . --ext .ts,.js",
+    "format": "prettier --write .",
+    "test": "jest",
+    "dev": "vite",
+    "prepublishOnly": "npm run lint && npm test && npm run build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "risk",
+    "flow",
+    "chart"
+  ],
+  "author": "XIANFU",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.46.2",
+    "@typescript-eslint/parser": "^8.46.2",
+    "@vitejs/plugin-vue": "^5.0.5",
+    "eslint": "^9.38.0",
+    "jest": "^30.2.0",
+    "less": "^4.4.2",
+    "prettier": "^3.6.2",
+    "ts-jest": "^29.4.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
+    "vite": "^5.4.10"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0",
+    "ant-design-vue": "^4.2.0",
+    "@ant-design/icons-vue": "^7.0.0",
+    "@antv/x6": "^2.18.0",
+    "@antv/x6-plugin-clipboard": "^2.1.0",
+    "@antv/x6-plugin-dnd": "^2.1.0",
+    "@antv/x6-plugin-history": "^2.2.0",
+    "@antv/x6-plugin-keyboard": "^2.2.0",
+    "@antv/x6-plugin-selection": "^2.2.0",
+    "@antv/x6-plugin-snapline": "^2.1.0",
+    "@antv/x6-plugin-transform": "^2.1.0"
+  },
+  "dependencies": {}
+}

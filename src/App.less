@@ -1,0 +1,154 @@
+.editor-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.editor-body {
+  flex: 1;
+  display: flex;
+  height: calc(100% - 50px);
+}
+
+.editor-aside-left {
+  padding: 10px;
+  background-color: #fff;
+  border-right: 1px solid #ebeef5;
+  min-width: 250px !important;
+
+  .aside-title {
+    // margin-bottom: 12px;
+    font-family: 'Source Han Sans';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px;
+    color: #3d3d3d;
+    text-align: center;
+    text-transform: none;
+  }
+
+  .component-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    place-items: center;
+
+    /* 横纵居中卡片 */
+    .component-card {
+      display: flex;
+      width: 80px;
+      height: 80px;
+      margin-bottom: 20px;
+
+      /* 卡片内内容居中 */
+      cursor: grab;
+      background: #f9f9f9;
+      border-radius: 11px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .card-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 6px;
+
+        .card-label {
+          font-size: 14px;
+          color: #333;
+        }
+      }
+    }
+
+    .component-card:hover {
+      background: #f0f0f0;
+    }
+  }
+}
+
+.editor-main {
+  position: relative;
+  overflow: hidden;
+  background-color: #fafafa;
+  flex: 1;
+
+  .toolbar {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+    border-radius: 4px;
+    box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+  }
+
+  .canvas-area {
+    height: 100%;
+  }
+}
+
+/* 悬浮面板固定右侧，不加入 flex 参与布局 */
+.floating-config {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  width: 400px;
+  height: 100%;
+  background: #fff;
+  border-left: 1px solid #ebeef5;
+  box-shadow: -2px 0 6px rgb(0 0 0 / 8%);
+  transition: transform 0.3s ease;
+  flex-direction: column;
+
+  .resize-handle {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 6px;
+    height: 100%;
+    cursor: ew-resize;
+    background: transparent;
+    z-index: 5;
+  }
+
+  /* 面板内容 */
+  .panel-content {
+    padding: 8px;
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  /* 面板空状态：垂直居中显示提示语 */
+  .panel-content .panel-empty {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 垂直居中 */
+    align-items: center; /* 保持左对齐 */
+  }
+
+  /* 展开/收起按钮，始终固定在左边缘中间 */
+  .toggle-btn {
+    position: absolute;
+    top: 50%;
+    left: -28px;
+    display: flex;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid #ebeef5;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.floating-config.collapsed {
+  transform: translate(100%, 0);
+}
