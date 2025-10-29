@@ -31,7 +31,6 @@ jest.mock('@antv/x6-plugin-snapline', () => ({}));
 jest.mock('@antv/x6-plugin-keyboard', () => ({}));
 jest.mock('@antv/x6-plugin-clipboard', () => ({}));
 jest.mock('@antv/x6-plugin-history', () => ({}));
-jest.mock('@ant-design/icons-vue', () => ({ MoreOutlined: {} }));
 
 // Use CommonJS require to avoid TS type resolution for built output
 // eslint-disable-next-line @typescript-eslint/no-var-requires

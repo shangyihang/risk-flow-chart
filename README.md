@@ -4,46 +4,35 @@
 
 ## 安装
 
-该库以 Vue 插件形式提供默认导出，同时提供 `RiskFlowChart` 组件的命名导出。请确保安装以下对等依赖：
+该库以 Vue 插件形式提供默认导出，同时提供 `RiskFlowChart` 组件的命名导出。
 
-- `vue@^3.5.0`
-- `ant-design-vue@^4.2.0`（UI 组件与样式）
-- `@antv/x6@^2.18.0` 及其插件：
-  - `@antv/x6-plugin-clipboard`
-  - `@antv/x6-plugin-dnd`
-  - `@antv/x6-plugin-history`
-  - `@antv/x6-plugin-keyboard`
-  - `@antv/x6-plugin-selection`
-  - `@antv/x6-plugin-snapline`
-  - `@antv/x6-plugin-transform`
+安装要求：
+
+- 仅需 `vue@^3.5.0`（作为对等依赖）。
+- Ant Design Vue、AntV X6 及其插件均已由本库内置并随构建打包，无需在宿主项目单独安装。
 
 ```bash
-# 安装本库（对等依赖需在宿主项目中安装）
+# 安装本库
 npm i risk-flow-chart
 
-# 如果你的项目尚未安装对等依赖，可执行（示例）：
-npm i vue ant-design-vue @antv/x6 \
-  @antv/x6-plugin-clipboard @antv/x6-plugin-dnd @antv/x6-plugin-history \
-  @antv/x6-plugin-keyboard @antv/x6-plugin-selection @antv/x6-plugin-snapline \
-  @antv/x6-plugin-transform
+# 如你的项目尚未安装 Vue（对等依赖），请同时安装
+npm i vue
 ```
 
 ## 快速开始
 
-推荐以插件方式注册组件，并在全局引入样式文件。
+推荐以插件方式注册组件（需引入库样式）。
 
 ```ts
 // main.ts
 import { createApp } from 'vue';
 import App from './App.vue';
-import Antd from 'ant-design-vue';
-import 'ant-design-vue/dist/reset.css'; // v4+ 推荐引入 reset.css
-
 import RiskFlowChartPlugin from 'risk-flow-chart';
-import 'risk-flow-chart/style.css'; // 引入组件库样式
+// 组件与 Ant Design Vue 已在库内注册
+// 样式为独立文件，请在入口导入
+import 'risk-flow-chart/style.css';
 
 const app = createApp(App);
-app.use(Antd);
 app.use(RiskFlowChartPlugin);
 app.mount('#app');
 ```
@@ -53,7 +42,8 @@ app.mount('#app');
 ```vue
 <script setup lang="ts">
 import { RiskFlowChart } from 'risk-flow-chart';
-import 'risk-flow-chart/style.css';
+// 使用命名导出时，仍需在应用入口引入库样式：
+// import 'risk-flow-chart/style.css'
 
 const graphJson = '';
 const flowJson = '';
@@ -140,13 +130,13 @@ const onSave = (form: { graphConfigJson: string; flowConfigJson: string }) => {
 
 ## 样式与构建产物
 
-- 必须引入组件样式：`import 'risk-flow-chart/dist/style.css'`。
-- 同时引入 `ant-design-vue` 样式（v4+ 推荐 `import 'ant-design-vue/dist/reset.css'`）。
+- 库自身样式为独立 CSS 文件，需在宿主项目入口 `import 'risk-flow-chart/style.css'`。
+- Ant Design Vue 样式采用 CSS-in-JS 注入，无需也不应导入 `ant-design-vue/dist/antd.css`（该文件并不存在）。
+- 若你的站点启用严格 CSP（禁止内联 `<style>`），请在根处使用 `ConfigProvider` 传递 `csp.nonce` 或适度放宽 `style-src` 以允许 Antd 的样式注入。
 - 构建产物：
   - ESM：`dist/index.es.js`
   - CJS：`dist/index.js`
   - 类型：`dist/index.d.ts`
-  - 样式：`dist/style.css`
 - 导出形式：默认导出为插件，命名导出为 `RiskFlowChart` 组件。
   - ESM 使用：`import RiskFlowChartPlugin, { RiskFlowChart } from 'risk-flow-chart'`
   - CJS 使用：
@@ -165,7 +155,7 @@ risk-flow-chart/
 │  ├─ App.vue             # 组件主体（编辑器）
 │  ├─ panel/              # 节点/连线配置面板
 │  ├─ hooks/              # 交互与尺寸调节等 hooks
-│  └─ constants.ts        # 常量与操作符映射
+│  └─ constants/          # 常量与操作符映射
 ├─ __tests__/             # 插件导出与注册测试
 ├─ dist/                  # 构建输出（ES/CJS/样式/类型）
 ├─ vite.config.ts         # 构建配置
@@ -191,6 +181,7 @@ npm run build
 
 ## 注意事项
 
-- 组件依赖外部的 Ant Design Vue 与 X6，请在宿主项目中正确安装并引入样式。
+- 依赖说明：宿主仅需安装 `vue@^3.5.0`，本库已内置并打包 `@antv/x6` 及其插件与 `ant-design-vue`。
+- CSP 提示：如启用 CSP，请为 Antd 的 CSS-in-JS 提供 `nonce`。
 - CJS 环境下由于混合导出（默认导出 + 命名导出），如遇默认导入问题请使用 `mod.default || mod` 兼容处理。
-- 构建时若看到 CJS 输出弃用提示属于 Vite/Rollup 的通用提示，不影响使用；如需仅输出 ESM，可在构建配置中调整 `formats`。
+- 构建日志中的 CJS Node API 弃用提示为 Vite 的通用消息，不影响使用；如需仅输出 ESM，可在构建配置中调整输出格式。

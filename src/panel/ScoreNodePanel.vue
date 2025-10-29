@@ -1,6 +1,6 @@
 <template>
     <a-form :label-col="{ style: { width: '80px' } }">
-        <h3 class="panel-tit">评分卡配置</h3>
+        <h3 style="text-align: center;">评分卡配置</h3>
         <a-divider style="margin: 15px 0 10px;" />
         <!-- 节点名称 -->
         <a-form-item label="节点名称">
@@ -17,7 +17,18 @@
                     <span>得分:</span>
                     <a-input-number v-model:value="rule.score" :min="0" style="width:80px" />
                     <a-dropdown :trigger="['hover']">
-                        <MoreOutlined class="icon-rotate-90" />
+                        <svg
+                            class="icon-rotate-90"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 1024 1024"
+                            fill="currentColor"
+                            aria-hidden="true"
+                        >
+                            <circle cx="256" cy="512" r="64" />
+                            <circle cx="512" cy="512" r="64" />
+                            <circle cx="768" cy="512" r="64" />
+                        </svg>
                         <template #overlay>
                             <a-menu @click="(item: any) => { if (item.key === 'delete') removeRule(i) }">
                                 <a-menu-item key="delete">删除</a-menu-item>
@@ -35,7 +46,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import RuleNodePanel from './RuleNodePanel.vue'
-import { MoreOutlined } from '@ant-design/icons-vue'
 
 const props = defineProps<{ model: any; config: { name?: string; rules?: any[] } }>()
 const emit = defineEmits(['update:config'])

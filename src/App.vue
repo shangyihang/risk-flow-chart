@@ -877,12 +877,6 @@ const setValue = () => {
 
 </script>
 
-<style>
-.panel-tit {
-    text-align: center;
-}
-</style>
-
 <style scoped>
-@import './App.less';
+@import './App.css';
 </style>

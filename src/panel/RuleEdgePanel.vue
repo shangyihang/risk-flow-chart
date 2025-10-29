@@ -1,6 +1,6 @@
 <template>
   <a-form :label-col="{ style: { width: '80px' } }">
-    <h3 class="panel-tit">规则连线配置</h3>
+    <h3 style="text-align: center;">规则连线配置</h3>
     <a-divider style="margin: 15px 0 10px;" />
     <a-form-item label="分支类型">
       <a-select v-model:value="localBranchType">

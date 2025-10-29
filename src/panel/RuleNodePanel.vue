@@ -1,6 +1,6 @@
 <template>
     <a-form :label-col="{ span: 6 }" :wrapper-col="{ span: 18 }">
-        <h3 class="panel-tit" v-if="!isCom">规则节点配置</h3>
+        <h3 style="text-align: center;" v-if="!isCom">规则节点配置</h3>
         <a-divider style="margin: 15px 0 10px;" />
         <!-- 节点名称 -->
         <a-form-item label="节点名称">

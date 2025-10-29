@@ -1,6 +1,6 @@
 <template>
   <a-form :label-col="{ style: { width: '80px' } }">
-    <h3 class="panel-tit">结束节点配置</h3>
+    <h3 style="text-align: center;">结束节点配置</h3>
     <a-divider style="margin: 15px 0 10px;" />
     <a-form-item label="节点名称">
       <a-input v-model:value="localName" @update:value="onNameChange" />

@@ -1,6 +1,6 @@
 <template>
   <a-form :label-col="{ style: { width: '50px' } }">
-    <h3 class="panel-tit">评分连线配置</h3>
+    <h3 style="text-align: center;">评分连线配置</h3>
     <a-divider style="margin: 15px 0 10px;" />
     <a-form-item>
       <a-radio-group v-model:value="conditionType" class="mb-4">
