@@ -40,7 +40,7 @@ import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/reset.css'; // v4+ 推荐引入 reset.css
 
 import RiskFlowChartPlugin from 'risk-flow-chart';
-import 'risk-flow-chart/dist/style.css'; // 引入组件库样式
+import 'risk-flow-chart/style.css'; // 引入组件库样式
 
 const app = createApp(App);
 app.use(Antd);
@@ -53,7 +53,7 @@ app.mount('#app');
 ```vue
 <script setup lang="ts">
 import { RiskFlowChart } from 'risk-flow-chart';
-import 'risk-flow-chart/dist/style.css';
+import 'risk-flow-chart/style.css';
 
 const graphJson = '';
 const flowJson = '';

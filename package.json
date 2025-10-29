@@ -1,6 +1,6 @@
 {
   "name": "risk-flow-chart",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "用于制作针对于风控模型的流程图插件",
   "private": false,
   "main": "dist/index.js",
@@ -14,7 +14,9 @@
       "import": "./dist/index.es.js",
       "require": "./dist/index.js",
       "default": "./dist/index.es.js"
-    }
+    },
+    "./style.css": "./dist/style.css",
+    "./dist/style.css": "./dist/style.css"
   },
   "scripts": {
     "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\"",
