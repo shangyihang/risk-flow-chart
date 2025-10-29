@@ -1,6 +1,6 @@
 {
   "name": "risk-flow-chart",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "用于制作针对于风控模型的流程图插件",
   "private": false,
   "main": "dist/index.js",
@@ -52,7 +52,7 @@
     "vite": "^5.4.10"
   },
   "peerDependencies": {
-    "vue": "^3.5.0",
+    "vue": "^3.5.12",
     "ant-design-vue": "^4.2.0",
     "@ant-design/icons-vue": "^7.0.0",
     "@antv/x6": "^2.18.0",

@@ -96,7 +96,7 @@ defineOptions({
     name: "RiskFlowChart",
 });
 
-const emit = defineEmits(["success"]);
+const emit = defineEmits(["success", "back"]);
 
 // 接收父组件传来的 Edge 实例(model) 和当前配置对象(row)
 const props = withDefaults(
@@ -196,6 +196,7 @@ const handleBeforeClose = async (done: Function) => {
 
 const close = () => {
     formLoading.value = false;
+    emit('back');
 };
 
 const resetForm = () => {
